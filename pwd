@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+#define size 1000
+char buf[size];
+
+int pwd_main() {
+    // Write your code here
+    // Do not write a main() function. Instead, deal with pwd_main() as the main function of your program.
+    char* ret = getcwd(buf, size);
+    if (ret == NULL)
+    {
+        printf("could not read the process \n");
+        exit(-2);
+    }
+    
+    if(write(1, buf, strlen(ret)) < 0)
+    {
+        printf("failed \n");
+        exit(-4);
+    }
+    
+    return 0;
+    
+    
+}
